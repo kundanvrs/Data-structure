@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MERGE SORT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Double_linkedlist Code
+
+struct d_list
+ {
+  int data;
+  struct d_list *next,*back;
+ };
+ typedef struct d_list DL;
+
+/* creation of new link list */ 
+
+DL*create()
+  {
+   DL *start=NULL, *ptr;
+   int choice;
+   start=(DL*)malloc(sizeof(DL));
+   start->back=NULL;
+   printf("\tEnter data\n");
+   scanf("%d",&start->data);
+   printf("Need more NODE?\t\t1:Yes\t2:No\n");
+   scanf("%d",&choice);
+   ptr=start; 
+   while(choice==1)
+    {
+     ptr->next=(DL*)malloc(sizeof(DL));
+     ptr->next->back=ptr;
+     ptr=ptr->next;
+     printf("\tEnter data\n");
+     scanf("%d",&ptr->data);
+     printf("Need more NODE??\t\t1:Yes\t2:No\n");
+     scanf("%d",&choice);
+ /*  if (choice<=0 || choice>2)
+    {
+         printf("Invalid choice, Please try again");
+         printf("Need more NODE??\t\t1:Yes\t2:No\n");
+         scanf("%d",&choice);
+    }*/
+   ptr->next=NULL;
+   return start;
+  }
+  
+void f_display(DL*start)
+  {
+   DL *ptr;
+   if(start==NULL)
+   printf("\tList is Empty\n");
+   else
+    {
+      printf("The elements are\n");
+     for(ptr=start;ptr!=NULL;ptr=ptr->next)
+     printf("%d\t",ptr->data);
+   printf("\n");
+    }
+ }
+ 
+void b_display(DL*start)
+  {
+   DL *ptr;
+   if(start==NULL)
+   printf("\tList is Empty\n");
+   else
+    {
+      printf("The elements are\n");
+      for(ptr=start;ptr->next!=NULL;ptr=ptr->next);
+      while(ptr!=NULL)
+       {
+         printf("%d\t",ptr->data);
+         ptr=ptr->back;
+       }
+   printf("\n");
+    }
+ }
+ 
+DL * insert_beg(DL*start)
+ {
+   DL *new;
+   new=(DL*)malloc(sizeof(DL));
+   printf("Enter data to be insert\n");
+   scanf("%d",&new->data);
+   new->back=NULL;
+   new->next=start;
+   if(start!=NULL)
+    start->back=new;
+   start=new;
+   printf("%d is inserted successfully\n",new->data);
+   return start;
+  }
+  
+DL*insert_end(DL*start)
+ {
+   DL *new,*ptr;
+   new=(DL*)malloc(sizeof(DL));
+   printf("Enter data to be inserted\n");
+   scanf("%d",&new->data);
+   if(start==NULL)
+    {
+      start=new;
+      new->back=NULL;
+      new->next=NULL;
+    }
+   else
+    {
+      for(ptr=start;ptr->next!=NULL;ptr=ptr->next);
+      ptr->next=new;
+      new->back=ptr;
+      new->next=NULL;
+    }
+  printf("%d is inserted successfully\n",new->data);
+  return start;
+ }
+
+%%%%%%%%%%%% Main Function
+
+int main()
+  {
+   int n;
+   DL *start=NULL;
+    while(1)
+    {
+     printf("\tWELCOME TO MENUBASE PROGRAMMING\nEnter your choice\n");
+     printf("\t1. Create a list\n\t2. Forward display\n\t3. Backward display\n\t4. Insert at begining\n\t5. Insert at end\n\t6. Exit\n");
+     scanf("%d",&n);
+     switch(n)
+      {
+      case 1:
+       start=create();
+       break;
+      case 2:
+       f_display(start);
+       break;
+      case 3:
+       b_display(start);
+       break;
+      case 4:
+       start=insert_beg(start);
+       break;
+      case 5:
+       start=insert_end(start);
+       break;
+      case 6:
+       printf("\tGood bye!!!!!!\n");
+       exit(0);
+       break;
+       default:
+               printf("\tTRY AGAIN\n");
+      }
+    }
+return 0;
+}
