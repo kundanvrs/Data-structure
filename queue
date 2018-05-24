@@ -1,0 +1,126 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% QUEUE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Queue Code
+
+#define MAX 10
+struct queue
+{
+ int A[10],FRONT,REAR;
+};
+typedef struct queue SQ;
+
+void displaymenu()
+{
+	printf("\t\t1.QUEUE INSERT\n");
+	printf("\t\t2.QUEUE DELETE\n");
+	printf("\t\t3.DISPLAY QUEUE\n");
+	printf("\t\t4.EXIT\n");
+}
+
+void qinsert(SQ *p)
+{
+	int item;
+	if((p->FRONT==0&&p->REAR==MAX-1)||(p->FRONT==p->REAR+1))
+	   
+           printf("Queue OVERFLOW\n");
+	else
+        {
+	   if(p->REAR==-1)p->FRONT=p->REAR=0;
+	else
+	   p->REAR=(p->REAR+1)%MAX;
+	   printf("Enter elements to be insert\n");
+	   scanf("%d",&item);
+	   p->A[p->REAR]=item;
+	   printf("%d is inserted\n}",item);
+        }	
+		
+}
+
+void qdisplay(SQ p)
+{
+	int i;
+	if(p.FRONT==-1)
+	  printf("Queue is Empty\n");
+	else
+      {
+	  printf("Queue elements are\n");
+	if(p.FRONT<=p.REAR)
+	  for(i=p.FRONT;i<=p.REAR;i++)
+               printf("%d\t",p.A[i]);
+      	
+	else
+      {
+	for(i=p.FRONT;i=MAX-1;i++)
+      
+	   printf("%d\t",p.A[i]);
+      
+        for(i=0;i<=p.REAR;i++)
+	   printf("%d\t",p.A[i]);
+      }
+    }	
+}
+
+void qdelete(SQ *p)
+{
+	if(p->FRONT==-1)
+	  printf("Queue Underflow\n");
+	else
+	{
+	  printf("Deleted item is %d",p->A[p->FRONT]);
+	  if(p->FRONT==p->REAR)
+		p->FRONT=p->REAR=-1;
+	 
+	else
+	  p->FRONT=(p->FRONT+1)%MAX;
+        }	   	
+     
+}
+
+
+%%%%%%%%%%%%% Main Function
+
+int main()
+{
+ int d; 
+ SQ s;
+ s.FRONT=s.REAR=-1;
+   while(1)
+    {
+       printf("\tWELCOME TO QUEUE WORLD\n"); 
+       displaymenu();
+       printf("Enter your choice\n");
+       scanf("%d",&d);
+         
+         switch(d)
+           {
+               case 1:
+                qinsert(&s);
+                break; 
+		
+		case 2:
+                qdelete(&s);
+                break;
+ 		
+		case 3:
+                qdisplay(s);
+                break; 
+		
+		case 4:
+                exit (0);
+		default:
+		printf("Enter a Valid choice!!\n");
+                break;
+		
+            }
+    }
+
+}
