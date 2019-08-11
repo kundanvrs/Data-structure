@@ -1,0 +1,183 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LINKED LIST %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Linkedlist Code
+SL*create()
+{
+	SL*start=NULL,*ptr;
+	int i,n;
+	start=(SL*)malloc(sizeof(SL))
+	printf("enter data element\n");
+	scanf("%d",&start->data);
+	ptr=start;
+	printf("how many node want to be create\n");
+	scanf("%d",&n);
+	for(i=1;i<=n;i++)
+	{
+		ptr->next=(SL*)malloc(sizeof(SL))
+		ptr=ptr->next;
+		printf("enter data\n");
+		scanf("%d",&ptr->data);
+	}
+	ptr->next=NULL;
+	return start;
+}//function close
+
+
+void SL_SORT(SL*start)
+{
+	int t;
+	SL*ptr1,*ptr2;
+	for(ptr1=start;ptr1->next!=NULL;ptr1=ptr1->next)
+	{
+		for(ptr2=ptr1->next;ptr2!=NULL;ptr2=ptr2->next)
+		{
+			if(ptr1->data>ptr2->data)
+			t=ptr1->data;
+			ptr1->data=ptr2->data;
+			ptr1->data=t;
+			
+		}//inner for loop close
+	}//outer for loop close
+	
+}//function close
+
+
+int searching(SL*start)
+{
+	int pos=-1;c=0;
+	SL*ptr;
+	printf("enter data to be searched\n");
+	scanf("%d",&item);
+	for(ptr=start;ptr!=NULL&&ptr->data!=item;ptr=ptr->next)
+	pos=pos+1;
+	if(ptr==NULL)
+	return -1;
+	else
+	return (pos+1);
+}//function close
+
+
+SL*insert_beg(start,data)
+{
+	int data;
+	SL*new;
+	//create a node
+	new=(SL*)malloc(sizeof(SL));
+	printf("enter data to be inserted\n");
+	scanf("%d",&data);
+	new->data=data;
+	new->next=start;
+	start=new;
+	printf("%d is inserted secussfully\n",data);
+	return start;
+}//function close
+
+
+void display()
+{
+	SL*ptr;
+	if(start==NULL)
+	printf("list is empty\n");
+	else
+	{
+		printf("list elements are:\n");
+		for(ptr=start;ptr!=NULL;ptr=ptr->next)
+		printf("%d\t",ptr->data);
+		
+	}//else close
+}//function close
+
+
+SL*reversing(SL*start)
+{
+	SL*ptr1,ptr2,*save;
+	if(start==NULL)
+	printf("list is empty");
+	else
+	{
+		ptr1=start;
+		ptr2=ptr->next;
+		while(ptr2!=NULL)
+		{
+			save=ptr2->next;
+			ptr2->next=ptr1;
+			ptr1=ptr2;
+			ptr2=save;
+		}
+		start->next=NULL;
+		//uptudate start
+		start=ptr1;
+		
+	}
+	return start;
+}
+
+%%%%%%%%%%%% DisplayMenu Function
+
+dispmenu()
+{
+	printf("MY LINKED LIST WORLD\n");
+	printf("1.CREATION\n");
+	printf("2.INSERTION\n");
+	printf("3.DELETION\n");
+	printf("4.SORTING\n");
+	printf("5.SEARCHING\n");
+	printf("6.DISPLAY\n");
+	printf("7.REVERSING\n");
+	printf("8.INSERTION AT GIVEN POSITION\n");
+	printf("9.DELETION AT GIVEN POSITION\n");
+	printf("10.\n");
+	printf("\n");
+}
+
+%%%%%%%%%%%% Main Function
+
+int main()
+{
+	int
+	printf("WELCOME\n");
+	while(1)
+	{
+		dispmenu();
+		printf("enter your choice\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				creation();
+				break;
+			case 2:
+				insertion()
+				break;
+			case 3:
+				deletion()
+				break;
+			case 4:
+				sorting()
+				break;
+			case 5:
+				searching()
+			case 6:
+				display()
+				break;
+			case 7:
+				insert_beg()
+				break;
+			case 8:
+				break;
+			case 9:
+				exit(0);
+			default;
+			printf("wrong choice enter\n");				
+		}//switch case close
+	}//while loop close
+}//main function close

@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STACK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Stack Code
+
+#define MAX 10
+struct stack
+{
+ int A[10],TOP;
+};
+typedef struct stack SS;
+
+void displaymenu()
+{
+	printf("\t\t1.PUSH\n");
+	printf("\t\t2.POP\n");
+	printf("\t\t3.PRINT STACK\n");
+	printf("\t\t4.EXIT\n");
+}
+
+void push(SS *p)
+{
+	int a;
+	if(p->TOP==MAX-1)
+		printf("Stack Overflow\n");
+	else
+	{		
+	   printf("Enter data to be pushed\n");
+	     scanf("%d",&a);
+		p->TOP=p->TOP+1;
+		  p->A[p->TOP]=a;
+		  printf("%d is pushed\n",a);
+
+        }        
+}
+void display(SS p)
+{
+	int i;
+	if(p.TOP==-1)
+	  printf("Stack is Empty\n");
+	else
+        {
+	   printf("Stack elements are:\n");
+           for(i=0; i<=p.TOP; i++)
+	   printf("%d\t",p.A[p.TOP]);
+        }	
+}
+void pop(SS *p)
+{
+	if(p->TOP==-1)
+	   printf("Stack Underflow\n");
+	else
+	{
+	   printf("Popped out element is %d\n",p->A[p->TOP]);
+	     p->TOP=p->TOP-1;
+	}     
+	
+     
+}
+
+%%%%%%%%%%%%% Main Function
+int main()
+{
+ int d; 
+ SS s;
+   while(1)
+    {
+       printf("\tWELCOME TO STACK WORLD\n"); 
+       displaymenu();
+       printf("Enter your choice\n");
+       scanf("%d",&d);
+         
+         switch(d)
+           {
+        case 1:
+                push(&s);
+                break; 
+		
+		    case 2:
+	            	pop(&s);
+                break;
+ 		
+		    case 3:
+                display(s);
+                break; 
+		
+		    case 4:
+                exit (0);
+		    default:
+		            printf("Enter a VALID choice!!\n");
+                break;
+		
+            }
+    }
+
+}
+
+
